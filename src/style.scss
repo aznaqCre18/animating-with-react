@@ -6,6 +6,9 @@ $secondary: #999999;
   font-size: 16px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   list-style-type: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 #container {
@@ -13,8 +16,8 @@ $secondary: #999999;
   display: flex;
   justify-content: center;
   align-items: center;
-  &:after {
-    content: "";
+
+  .bg-square {
     position: absolute;
     width: 700px;
     height: 450px;
@@ -23,6 +26,8 @@ $secondary: #999999;
     background: #e4e4e4;
     opacity: 0.8;
     z-index: -10;
+    opacity: 0;
+    transform: translateX(700px);
   }
 
   .t-container {
@@ -30,16 +35,18 @@ $secondary: #999999;
     min-width: 1280px;
     height: 600px;
     position: relative;
-    &:after {
-      content: "";
+
+    .bg-circle {
       position: absolute;
       width: 200px;
       height: 200px;
-      background: rgb(50, 123, 240);
+      background: rgb(0, 76, 255);
       border-radius: 100%;
       top: -25px;
       left: 120px;
       z-index: -10;
+      transform: translate(-50px, -50px);
+      opacity: 0;
     }
 
     .arrows {
@@ -56,6 +63,12 @@ $secondary: #999999;
 
       &.right {
         right: 0;
+        transform: translateY(-120px);
+        opacity: 0;
+      }
+      &.left {
+        transform: translateY(120px);
+        opacity: 0;
       }
 
       &:hover {
@@ -83,13 +96,18 @@ $secondary: #999999;
           width: 340px;
           height: 460px;
           overflow: hidden;
-          box-shadow: 0 0 40px rgba(0, 0, 10, 0.25);
+          // box-shadow: 0 0 40px rgba(0, 0, 10, 0.25);
+
           li {
             width: 340px;
             height: 460px;
             img {
               width: 340px;
               height: 460px;
+            }
+            &:nth-child(1) {
+              transform: translateX(-340px);
+              opacity: 0;
             }
           }
         }

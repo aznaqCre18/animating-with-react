@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { TweenLite, Power3 } from "gsap";
+import gsap, { TweenLite, Power3 } from "gsap";
 
 import { Steve, Mark, Bill, Right, Left } from "./assets";
 import "./style.scss";
@@ -163,13 +163,59 @@ function App() {
       opacity: 1,
       x: 0,
       ease: Power3.easeInOut,
-      delay: 0.2,
+      delay: 1,
     });
+
+    TweenLite.to(ImageList.children[0], 2, {
+      opacity: 1,
+      x: 0,
+      ease: Power3.easeInOut,
+      delay: 1,
+    });
+
+    const tl = gsap.timeline();
+    tl.to(
+      ".bg-square",
+      {
+        x: 0,
+        opacity: 1,
+      },
+      1
+    )
+      .to(
+        ".bg-circle",
+        {
+          x: 0,
+          y: 0,
+          opacity: 1,
+        },
+        1
+      )
+      .to(
+        ".right",
+        {
+          y: 0,
+          opacity: 1,
+          delay: 1.2,
+        },
+        0.8
+      )
+      .to(
+        ".left",
+        {
+          y: 0,
+          opacity: 1,
+          delay: 1.2,
+        },
+        0.8
+      );
   }, []);
 
   return (
     <div id="container">
+      <div className="bg-square"></div>
       <div className="t-container">
+        <div className="bg-circle"></div>
         <div className="arrows left" onClick={handlePrev}>
           <span>
             <img src={Left} />
